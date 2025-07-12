@@ -17,6 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SkillSwap">
         <activity
+            android:name=".ProfileFragment"
+            android:exported="false" />
+        <activity
+            android:name=".StatusFragment"
+            android:exported="false" />
+        <activity
+            android:name=".SearchFragment"
+            android:exported="false" />
+        <activity
+            android:name=".HomeFragment"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

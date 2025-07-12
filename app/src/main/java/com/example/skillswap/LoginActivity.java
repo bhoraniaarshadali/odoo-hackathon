@@ -57,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                 // TODO: Add actual login logic here (Firebase, SQL, dummy check etc.)
                 Toast.makeText(LoginActivity.this, "Login success (dummy)", Toast.LENGTH_SHORT).show();
                 // Intent to HomeActivity (after login)
-                // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                // finish();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
             }
         });
 

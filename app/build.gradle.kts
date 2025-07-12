@@ -33,6 +33,10 @@ android {
 
 dependencies {
 
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
