@@ -7,9 +7,29 @@
     android:padding="16dp">
 
     <TextView
-        android:text="Home Page"
+        android:id="@+id/welcomeText"
+        android:text="Welcome back, User!"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/statsText"
+        android:text="📊 Your Stats:\n• Total Swaps: 5\n• Pending Requests: 2\n• Completed Swaps: 3"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/recentActivityText"
+        android:text="🕒 Recent Activity:\n• Swap request sent to John\n• Completed swap with Sarah\n• New skill added: Python"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
 </LinearLayout>
