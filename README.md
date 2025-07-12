@@ -39,7 +39,7 @@ SkillSwap is an Android-based platform that empowers users to exchange skills, c
 |------------------|----------------------------------|
 | Language         | Java (Android)                   |
 | UI               | XML + Material Components        |
-| Backend (Planned)| Firebase Authentication / SQLite |
+| Backend (Planned)| Django |
 | Design Prototype | [Figma UI](https://www.figma.com/design/OAqnucNBoi193Znpz4ly3k/SkillSwap-by-me?node-id=8-1132&t=DEzMPtE0e95f37QO-1) |
 
 ---
