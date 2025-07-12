@@ -10,6 +10,6 @@
 1. Arshadali Bhorania  
 2. Arvind Padyachi  
 3. Janamjay Sinha  
-4. Jheel  
+4. Jheel Jain
 
 **Group Leader (ODOO)** - Arvind Padyachi
