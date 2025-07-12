@@ -29,18 +29,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    skills_count = serializers.SerializerMethodField()
-    swaps_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ['id', 'user', 'name', 'location', 'is_public', 'availability', 'skills_count', 'swaps_count']
-
-    def get_skills_count(self, obj):
-        return obj.user.skill_set.count()
-
-    def get_swaps_count(self, obj):
-        return SwapRequest.objects.filter(sender=obj.user).count() + SwapRequest.objects.filter(receiver=obj.user).count()
+        fields = ['id', 'user', 'name', 'location', 'is_public', 'availability', 
+                 'offered_skills', 'wanted_skills', 'rating']
 
 class SkillSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -51,26 +44,24 @@ class SkillSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'user', 'user_name', 'is_offered', 'created_at']
 
 class SwapRequestSerializer(serializers.ModelSerializer):
-    sender = UserSerializer(read_only=True)
-    receiver = UserSerializer(read_only=True)
-    skill_requested = SkillSerializer(read_only=True)
-    skill_offered = SkillSerializer(read_only=True)
-    sender_name = serializers.CharField(source='sender.username', read_only=True)
-    receiver_name = serializers.CharField(source='receiver.username', read_only=True)
+    requester = UserSerializer(read_only=True)
+    target_user = UserSerializer(read_only=True)
+    requester_name = serializers.CharField(source='requester.username', read_only=True)
+    target_user_name = serializers.CharField(source='target_user.username', read_only=True)
 
     class Meta:
         model = SwapRequest
-        fields = ['id', 'sender', 'sender_name', 'receiver', 'receiver_name', 
-                 'skill_requested', 'skill_offered', 'status', 'created_at']
+        fields = ['id', 'requester', 'requester_name', 'target_user', 'target_user_name', 
+                 'message', 'status', 'created_at']
 
 class SwapRequestCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = SwapRequest
-        fields = ['receiver', 'skill_requested', 'skill_offered']
+        fields = ['target_user', 'message']
 
     def validate(self, data):
-        # Ensure sender and receiver are different
-        if data['receiver'] == self.context['request'].user:
+        # Ensure requester and target_user are different
+        if data['target_user'] == self.context['request'].user:
             raise serializers.ValidationError("Cannot send swap request to yourself")
         return data
 
