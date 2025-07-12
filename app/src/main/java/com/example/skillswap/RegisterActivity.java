@@ -1,9 +1,9 @@
 package com.example.skillswap;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,11 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO: Save user details (Firebase, SQLite, etc.)
-                Toast.makeText(this, "Registered successfully (dummy)", Toast.LENGTH_SHORT).show();
-                // Go back to login
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
+                // Call API to register
+                new RegisterTask().execute(name, email, password);
             }
         });
 
@@ -64,5 +61,58 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
+    }
+
+    // AsyncTask for registration API call
+    private class RegisterTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String name = params[0];
+            String email = params[1];
+            String password = params[2];
+            String apiUrl = "http://10.0.2.2:8000/api/auth/register/"; // Use 10.0.2.2 for Android emulator
+
+            try {
+                java.net.URL url = new java.net.URL(apiUrl);
+                java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                conn.setDoOutput(true);
+
+                // Prepare JSON
+                String jsonInputString = String.format(
+                    "{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"%s\",\"first_name\":\"%s\",\"last_name\":\"\"}",
+                    name, password, email, name
+                );
+
+                try (java.io.OutputStream os = conn.getOutputStream()) {
+                    byte[] input = jsonInputString.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
+
+                int code = conn.getResponseCode();
+                if (code == 201) {
+                    return "success";
+                } else {
+                    java.io.InputStream errorStream = conn.getErrorStream();
+                    java.util.Scanner s = new java.util.Scanner(errorStream).useDelimiter("\\A");
+                    String error = s.hasNext() ? s.next() : "";
+                    return "error: " + error;
+                }
+            } catch (Exception e) {
+                return "error: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result.equals("success")) {
+                Toast.makeText(RegisterActivity.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                finish();
+            } else {
+                Toast.makeText(RegisterActivity.this, "Registration failed: " + result, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
