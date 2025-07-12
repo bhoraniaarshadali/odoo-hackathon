@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EAF7FF"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="32dp"/>
+
+        <!-- Apple Login -->
+        <TextView
+            android:id="@+id/logoText"
+            android:layout_width="wrap_content"
+            android:layout_height="75sp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/logo"
+            android:textColor="#2196F3"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/googleButton"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:background="@drawable/google"
+            android:layout_marginTop="20sp"
+            android:clickable="true"
+            android:focusable="true"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <!-- Apple Login -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or by email"
+            android:textColor="#666666"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_input"
+            android:textColorHint="#808080"
+            android:textColor="#000000"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_input"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColorHint="#808080"
+                android:padding="12dp"
+                android:paddingEnd="48dp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/togglePassword"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_eye"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="12dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot password?"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="24dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginButton"
+            style="@android:style/Widget.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailEditText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="25sp"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/radius_button"
+            android:backgroundTint="@color/primary_blue"
+            android:clickable="true"
+            android:contentDescription="login_button"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? "
+            android:layout_marginTop="30sp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/createAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create an account"
+            android:textColor="#2196F3"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>
