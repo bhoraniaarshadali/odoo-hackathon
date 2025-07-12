@@ -65,6 +65,7 @@ SkillSwap is an Android-based platform that empowers users to exchange skills, c
 5. Run the project on emulator or device
 
 ---
+https://github.com/user-attachments/assets/6822da18-5959-41b1-b79e-d96e6195bbf6
 
 > Developed as part of the ODOO Hackathon 2025 to encourage collaborative learning and community-driven growth.
 
